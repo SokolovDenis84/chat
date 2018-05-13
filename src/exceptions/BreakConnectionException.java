@@ -1,3 +1,5 @@
+package exceptions;
+
 public class BreakConnectionException extends Throwable {
     public BreakConnectionException(String exception) {
     }
