@@ -13,7 +13,7 @@ public class ChatHandler extends Thread {
     private DataInputStream dataInputStream;
     private DataOutputStream dataOutputStream;
     private static List<ChatHandler> handlers = Collections.synchronizedList(new ArrayList<>());
-    private static final int MAX_CONNECTED = 2;
+    private static final int MAX_CONNECTED = 5;
 
     public ChatHandler(Socket socket, List<String> badWords) throws IOException {
         this.socket = socket;
@@ -35,7 +35,7 @@ public class ChatHandler extends Thread {
                 String message = dataInputStream.readUTF();
 
                 if (hasBadWord(message)) {
-                    System.out.println("Break the connection with " + this.getName());
+                    System.err.println("Break the connection with " + this.getName());
                     throw new BreakConnectionException();
                     //throw new BreakException();
                 } else {
